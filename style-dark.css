@@ -1,6 +1,6 @@
 :root {
     --md-sys-color-primary: rgb(211 188 253);
-        --md-sys-color-surface-tint: rgb(211 188 253);
+    --md-sys-color-surface-tint: rgb(211 188 253);
         --md-sys-color-on-primary: rgb(56 38 92);
         --md-sys-color-primary-container: rgb(79 61 116);
         --md-sys-color-on-primary-container: rgb(235 221 255);
@@ -52,10 +52,10 @@
 
 body {
     font-family: "Inter", sans-serif;
-        -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     background: var(--md-sys-color-background);
-        overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .text-primary {
@@ -64,7 +64,7 @@ body {
 
 .bg-headerfooter {
     background: var(--md-sys-color-surface-variant) !important;
-        color: var(--md-sys-color-on-surface);
+    color: var(--md-sys-color-on-surface);
 }
 
 .bg-card {
@@ -81,7 +81,7 @@ body {
 
 .fab-pagetop {
     position: fixed;
-        right: 16px;
+    right: 16px;
         bottom: 16px;
         z-index: 50;
         color: var(--md-sys-color-secondary-container) !important;
@@ -89,9 +89,9 @@ body {
 
 .tooltip, [role="tooltip"] {
     background: var(--md-sys-color-surface-variant);
-        color: var(--md-sys-color-on-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
         border-radius: 16px;
         padding: 0.5em 1em;
         font-size: 0.95em;
-    /* box-shadow: 0 2px 8px rgba(255, 255, 255, 0.8); */
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
 }
