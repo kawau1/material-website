@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-T" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>自己紹介 - マテリアルデザイン</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link id="theme-style" rel="stylesheet" href="style-light.css" />
+        <script src="script.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+        />
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+        <script type="module">
+            import "@material/web/all.js";
+            import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
+
+            document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+        </script>
+    </head>
+    <body class="bg-background">
+        <header class="bg-headerfooter flex items-center">
+            <md-icon-button id="menuBtn" title="メニューを開く">
+                <md-icon>menu</md-icon>
+                <md-icon slot="selected">menu_open</md-icon>
+            </md-icon-button>
+            <div class="container mx-auto px-6 py-4">
+                <h1 class="text-2xl font-bold text-primary">
+                    マイポートフォリオ
+                </h1>
+            </div>
+            <md-icon-button title="検索">
+                <md-icon>search</md-icon>
+            </md-icon-button>
+            <md-icon-button id="themeBtn" title="ダークモードに切り替える">
+                <md-icon>dark_mode</md-icon>
+                <md-icon slot="selected">light_mode</md-icon>
+            </md-icon-button>
+        </header>
+
+        <main class="container mx-auto px-6 py-8">
+            <!-- FAB [↑] -->
+            <md-fab class="fab-pagetop">
+                <md-icon slot="icon">arrow_upward</md-icon>
+            </md-fab>
+            <section
+                id="hero"
+                class="bg-card rounded-xl shadow-xl p-8 md:p-12 mb-12 text-center"
+            >
+                <img
+                    src="https://placehold.co/150x150/E0E0E0/333333?text=あなたの顔写真"
+                    alt="あなたの顔写真"
+                    class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-indigo-300 shadow-md"
+                />
+                <h2 class="text-4xl font-bold text-primary mb-2">
+                    川口 愉一 (Kawaguchi Yuichi)
+                </h2>
+                <p class="text-xl text-card mb-6">
+                    システムエンジニア | UI/UXデザイナー
+                </p>
+                <p class="text-card max-w-2xl mx-auto mb-6">
+                    はじめまして！私はユーザー中心の美しいウェブサイトやアプリケーションを作成することに情熱を注いでいるシステムエンジニアです。
+                    マテリアルデザインの原則に基づいた、直感的で使いやすいインターフェースデザインを得意としています。
+                </p>
+                <md-filled-tonal-button>お問い合わせ</md-filled-tonal-button>
+            </section>
+
+            <section
+                id="about"
+                class="bg-card rounded-xl shadow-xl p-8 md:p-12 mb-12"
+            >
+                <h3
+                    class="text-3xl font-semibold text-primary mb-6 border-b-2 border-custom pb-2"
+                >
+                    私について
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-card leading-relaxed mb-4">
+                            私は数年にわたり、フロントエンド開発とUIデザインに携わってきました。特にReactやVue.jsといったモダンなJavaScriptフレームワークを使用した開発経験が豊富です。
+                            常に新しい技術やデザイントレンドを学び、最高のユーザーエクスペリエンスを提供することを目指しています。
+                        </p>
+                        <p class="text-card leading-relaxed">
+                            趣味は、新しいカフェの開拓、写真撮影、そして週末にはハイキングに出かけることです。これらの経験が、私のクリエイティブな発想の源泉となっています。
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-card mb-3">
+                            主なスキル
+                        </h4>
+                        <ul class="list-disc list-inside text-card space-y-1">
+                            <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                            <li>React, Vue.js, Next.js</li>
+                            <li>Tailwind CSS, Material UI</li>
+                            <li>Figma, Adobe XD</li>
+                            <li>レスポンシブデザイン</li>
+                            <li>API連携</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="mb-12">
+                <h3
+                    class="text-3xl font-semibold text-primary mb-8 border-b-2 border-custom pb-2"
+                >
+                    プロジェクト事例
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="bg-card rounded-xl shadow-lg overflow-hidden transform hover:shadow-2xl transition-shadow duration-300"
+                    >
+                        <img
+                            src="https://placehold.co/600x400/90CAF9/FFFFFF?text=プロジェクト1"
+                            alt="プロジェクト1の画像"
+                            class="w-full h-48 object-cover"
+                        />
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-primary mb-2">
+                                プロジェクト名 1
+                            </h4>
+                            <p class="text-card text-sm mb-4">
+                                このプロジェクトは、〇〇の課題を解決するために開発されました。主な使用技術はReactとFirebaseです。
+                            </p>
+                            <a
+                                href="#"
+                                class="text-indigo-500 hover:text-primary font-medium"
+                                >詳細を見る &rarr;</a
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="bg-card rounded-xl shadow-lg overflow-hidden transform hover:shadow-2xl transition-shadow duration-300"
+                    >
+                        <img
+                            src="https://placehold.co/600x400/A5D6A7/FFFFFF?text=プロジェクト2"
+                            alt="プロジェクト2の画像"
+                            class="w-full h-48 object-cover"
+                        />
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-primary mb-2">
+                                プロジェクト名 2
+                            </h4>
+                            <p class="text-card text-sm mb-4">
+                                ECサイトのUI/UX改善プロジェクト。マテリアルデザインを採用し、コンバージョン率の向上に貢献しました。
+                            </p>
+                            <a
+                                href="#"
+                                class="text-indigo-500 hover:text-primary font-medium"
+                                >詳細を見る &rarr;</a
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="bg-card rounded-xl shadow-lg overflow-hidden transform hover:shadow-2xl transition-shadow duration-300"
+                    >
+                        <img
+                            src="https://placehold.co/600x400/FFCC80/FFFFFF?text=プロジェクト3"
+                            alt="プロジェクト3の画像"
+                            class="w-full h-48 object-cover"
+                        />
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-primary mb-2">
+                                プロジェクト名 3
+                            </h4>
+                            <p class="text-card text-sm mb-4">
+                                モバイルアプリのプロトタイプデザイン。ユーザーインタビューに基づき、使いやすさを追求しました。
+                            </p>
+                            <a
+                                href="#"
+                                class="text-indigo-500 hover:text-primary font-medium"
+                                >詳細を見る &rarr;</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-headerfooter text-gray-300 mt-12 py-8 text-center">
+            <div class="container mx-auto px-6 bg-headerfooter">
+                <p class="text-sm">&copy; 2025 kawau1. All Rights Reserved.</p>
+                <p class="text-xs mt-1">マテリアルデザイン風ポートフォリオ</p>
+                <div class="mt-4">
+                    <a href="#" class="hover: mx-2">GitHub</a>
+                    <a href="#" class="hover: mx-2">LinkedIn</a>
+                    <a href="#" class="hover: mx-2">Twitter</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
