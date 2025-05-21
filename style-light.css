@@ -54,18 +54,12 @@ body {
     font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: var(--md-sys-color-on-primary); /* Background */
-    color: var(--md-sys-color-on-background); /* On Background */
+    background: var(--md-sys-color-background);
     overflow-x: hidden;
 }
 
 .text-primary {
     color: var(--md-sys-color-primary) !important;
-}
-
-.bg-background {
-    /* background: var(--md-sys-color-background) !important; */
-    background: var(#FFFFFF) !important;
 }
 
 .bg-headerfooter {
@@ -74,7 +68,7 @@ body {
 }
 
 .bg-card {
-    background: var(--md-sys-color-surface) !important;
+    background: var(--md-sys-color-surface-container) !important;
 }
 
 .border-custom {
@@ -94,10 +88,10 @@ body {
 }
 
 .tooltip, [role="tooltip"] {
-    background: var(--md-sys-color-on-surface-variant);
-    color: var(--md-sys-color-surface-variant);
+    background: var(--md-sys-color-surface-variant);
+        color: var(--md-sys-color-on-surface-variant);
     border-radius: 16px;
     padding: 0.5em 1em;
     font-size: 0.95em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
