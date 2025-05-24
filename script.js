@@ -4,6 +4,19 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // ページトップFABの表示制御
+    const fabPageTop = document.querySelector('.fab-pagetop');
+    function toggleFabVisibility() {
+        if (!fabPageTop || !(fabPageTop instanceof HTMLElement)) return;
+        if (window.scrollY === 0) {
+            fabPageTop.style.display = 'none';
+        } else {
+            fabPageTop.style.display = '';
+        }
+    }
+    toggleFabVisibility();
+    window.addEventListener('scroll', toggleFabVisibility);
+
     // メニューアイコンボタン
     const menuBtn = document.getElementById('menuBtn');
     if (menuBtn) {
