@@ -49,5 +49,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+
+        // デバイスのカラースキームに合わせて自動切り替え
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        function applySystemTheme() {
+            if (!themeStyle || !themeBtn) return;
+            if (prefersDark.matches) {
+                themeStyle.setAttribute('href', 'style-dark.css');
+                themeBtn.setAttribute('selected', '');
+                themeBtn.setAttribute('title', 'ライトモードに切り替える');
+            } else {
+                themeStyle.setAttribute('href', 'style-light.css');
+                themeBtn.removeAttribute('selected');
+                themeBtn.setAttribute('title', 'ダークモードに切り替える');
+            }
+        }
+        applySystemTheme();
+        prefersDark.addEventListener('change', applySystemTheme);
     }
 });
