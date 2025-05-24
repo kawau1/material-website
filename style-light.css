@@ -62,7 +62,7 @@ body {
     color: var(--md-sys-color-primary) !important;
 }
 
-.bg-headerfooter {
+.bg-footer {
     background: var(--md-sys-color-surface-variant) !important;
     color: var(--md-sys-color-on-surface);
 }
@@ -86,11 +86,11 @@ body {
     z-index: 50;
 }
 
-.tooltip, [role="tooltip"] {
+/* .tooltip, [role="tooltip"] {
     background: var(--md-sys-color-surface-variant);
     color: var(--md-sys-color-on-surface-variant);
     border-radius: 16px;
     padding: 0.5em 1em;
     font-size: 0.95em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
+} */
