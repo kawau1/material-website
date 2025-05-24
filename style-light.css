@@ -84,7 +84,6 @@ body {
     right: 16px;
     bottom: 16px;
     z-index: 50;
-    /* background: var(--md-sys-color-primary) !important; */
 }
 
 .tooltip, [role="tooltip"] {
