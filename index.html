@@ -40,25 +40,29 @@
                 <md-icon>menu</md-icon>
                 <md-icon slot="selected">menu_open</md-icon>
             </md-icon-button>
+            <md-tooltip for="menuBtn" id="menuTooltip">メニューを開く</md-tooltip>
             <div class="container mx-auto px-6 py-4">
                 <h1 class="text-2xl font-bold text-primary">
                     マイポートフォリオ
                 </h1>
             </div>
-            <md-icon-button class="mx-2" title="検索">
+            <md-icon-button class="mx-2" id="searchBtn" title="検索">
                 <md-icon>search</md-icon>
             </md-icon-button>
+            <md-tooltip for="searchBtn" id="searchTooltip">検索</md-tooltip>
             <md-icon-button class="mx-2" id="themeBtn" title="ダークモードに切り替える">
                 <md-icon>dark_mode</md-icon>
                 <md-icon slot="selected">light_mode</md-icon>
             </md-icon-button>
+            <md-tooltip for="themeBtn" id="themeTooltip">ダークモードに切り替える</md-tooltip>
         </header>
 
         <main class="container mx-auto px-6 py-8">
             <!-- FAB [↑] -->
-            <md-fab class="fab-pagetop" variant="primary">
+            <md-fab class="fab-pagetop" id="pageTopFab" variant="primary">
                 <md-icon slot="icon">arrow_upward</md-icon>
             </md-fab>
+            <md-tooltip for="pageTopFab" id="pageTopTooltip">ページトップへ</md-tooltip>
             <section
                 id="hero"
                 class="bg-card rounded-xl shadow-xl p-8 md:p-12 mb-12 text-center"
