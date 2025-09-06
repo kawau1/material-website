@@ -1,15 +1,6 @@
 # Material Design Website
 
-```
-material-website
-├── material-theme/
-├── index.html
-├── script.js
-├── style-dark.css
-└── style-light.css
-```
-
-## Link
+## Links
 
 - [Material Design 3](https://m3.material.io/)
 - [Material Web](https://material-web.dev/)
