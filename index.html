@@ -36,7 +36,7 @@
 
     <body class="bg-background">
         <header class="flex items-center">
-            <md-icon-button class="mx-2" id="menuBtn" title="メニューを開く">
+            <md-icon-button class="mx-2" id="menuBtn" title="メニューを開く" aria-controls="sidebar" aria-expanded="false" aria-label="メニュー">
                 <md-icon>menu</md-icon>
                 <md-icon slot="selected">menu_open</md-icon>
             </md-icon-button>
@@ -53,6 +53,21 @@
                 <md-icon slot="selected">light_mode</md-icon>
             </md-icon-button>
         </header>
+
+        <div id="sidebarScrim" class="sidebar-scrim" aria-hidden="true"></div>
+        <aside id="sidebar" class="sidebar" aria-hidden="true">
+            <div class="sidebar-header">
+                <div class="sidebar-title">メニュー</div>
+                <md-icon-button id="closeSidebarBtn" title="メニューを閉じる" aria-label="メニューを閉じる">
+                    <md-icon>close</md-icon>
+                </md-icon-button>
+            </div>
+            <nav class="sidebar-nav" aria-label="サイドナビゲーション">
+                <a href="#hero" class="sidebar-link" data-sidebar-close>トップ</a>
+                <a href="#about" class="sidebar-link" data-sidebar-close>私について</a>
+                <a href="#projects" class="sidebar-link" data-sidebar-close>プロジェクト</a>
+            </nav>
+        </aside>
 
             <main class="container mx-auto px-6 py-8">
             <!-- FAB [↑] -->
