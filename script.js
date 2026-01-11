@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
     const sidebarScrim = document.getElementById("sidebarScrim");
-    const closeSidebarBtn = document.getElementById("closeSidebarBtn");
     let lastFocusedElement = null;
 
     function setSidebarOpen(isOpen) {
@@ -44,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.activeElement instanceof HTMLElement
                     ? document.activeElement
                     : null;
-            closeSidebarBtn?.focus();
         } else if (lastFocusedElement) {
             lastFocusedElement.focus();
         }
@@ -56,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    closeSidebarBtn?.addEventListener("click", () => setSidebarOpen(false));
     sidebarScrim?.addEventListener("click", () => setSidebarOpen(false));
 
     sidebar
