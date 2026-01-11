@@ -86,13 +86,18 @@ body {
     z-index: 50;
 }
 
+body.sidebar-open #menuBtn {
+    position: relative;
+    z-index: 70;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: min(80vw, 320px);
     height: 100vh;
-    padding: 20px 16px;
+    padding: 40px 16px 20px;
     background: var(--md-sys-color-surface-container-high);
     color: var(--md-sys-color-on-surface);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
