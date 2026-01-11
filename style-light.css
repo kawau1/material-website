@@ -130,6 +130,7 @@ body.sidebar-open #menuBtn {
 
 .sidebar-open {
     overflow: hidden;
+    padding-right: var(--scrollbar-width, 0px);
 }
 
 .sidebar-header {
