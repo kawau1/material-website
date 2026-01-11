@@ -27,6 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function setSidebarOpen(isOpen) {
         if (!menuBtn || !sidebar || !sidebarScrim) return;
+        if (isOpen) {
+            const scrollbarWidth =
+                window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.setProperty(
+                "--scrollbar-width",
+                `${scrollbarWidth}px`
+            );
+        } else {
+            document.body.style.removeProperty("--scrollbar-width");
+        }
         sidebar.classList.toggle("is-open", isOpen);
         sidebarScrim.classList.toggle("is-open", isOpen);
         document.body.classList.toggle("sidebar-open", isOpen);
