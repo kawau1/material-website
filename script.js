@@ -19,20 +19,66 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleFabVisibility();
     window.addEventListener("scroll", toggleFabVisibility);
 
-    // メニューアイコンボタン
+    // メニューアイコンボタン + サイドバー
     const menuBtn = document.getElementById("menuBtn");
-    if (menuBtn) {
+    const sidebar = document.getElementById("sidebar");
+    const sidebarScrim = document.getElementById("sidebarScrim");
+    let lastFocusedElement = null;
+
+    function setSidebarOpen(isOpen) {
+        if (!menuBtn || !sidebar || !sidebarScrim) return;
+        if (isOpen) {
+            const scrollbarWidth =
+                window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.setProperty(
+                "--scrollbar-width",
+                `${scrollbarWidth}px`
+            );
+        } else {
+            document.body.style.removeProperty("--scrollbar-width");
+        }
+        sidebar.classList.toggle("is-open", isOpen);
+        sidebarScrim.classList.toggle("is-open", isOpen);
+        document.body.classList.toggle("sidebar-open", isOpen);
+        sidebar.setAttribute("aria-hidden", isOpen ? "false" : "true");
+        sidebarScrim.setAttribute("aria-hidden", isOpen ? "false" : "true");
+        menuBtn.toggleAttribute("selected", isOpen);
+        menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        menuBtn.setAttribute(
+            "title",
+            isOpen ? "メニューを閉じる" : "メニューを開く"
+        );
+        if (isOpen) {
+            lastFocusedElement =
+                document.activeElement instanceof HTMLElement
+                    ? document.activeElement
+                    : null;
+        } else if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    if (menuBtn && sidebar && sidebarScrim) {
         menuBtn.addEventListener("click", () => {
-            // selected属性をトグル
-            menuBtn.toggleAttribute("selected");
-            // ツールチップも状態に応じて変更
-            if (menuBtn.hasAttribute("selected")) {
-                menuBtn.setAttribute("title", "メニューを閉じる");
-            } else {
-                menuBtn.setAttribute("title", "メニューを開く");
-            }
+            setSidebarOpen(!sidebar.classList.contains("is-open"));
         });
     }
+
+    sidebarScrim?.addEventListener("click", () => setSidebarOpen(false));
+
+    sidebar
+        ?.querySelectorAll("[data-sidebar-close]")
+        .forEach((item) =>
+            item.addEventListener("click", () => setSidebarOpen(false))
+        );
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && sidebar?.classList.contains("is-open")) {
+            setSidebarOpen(false);
+        }
+    });
+
+    setSidebarOpen(false);
 
     // テーマ切り替えボタン
     const themeBtn = document.getElementById("themeBtn");
