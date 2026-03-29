@@ -78,23 +78,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    setSidebarOpen(false);
-
     // テーマ切り替えボタン
     const themeBtn = document.getElementById("themeBtn");
     const themeStyle = document.getElementById("theme-style");
     if (themeBtn && themeStyle) {
-        const linkElem = document.getElementById("theme-style");
         themeBtn.addEventListener("click", () => {
             themeBtn.toggleAttribute("selected");
-            if (linkElem) {
-                if (themeBtn.hasAttribute("selected")) {
-                    linkElem.setAttribute("href", "style-dark.css");
-                    themeBtn.setAttribute("title", "ライトモードに切り替える");
-                } else {
-                    linkElem.setAttribute("href", "style-light.css");
-                    themeBtn.setAttribute("title", "ダークモードに切り替える");
-                }
+            if (themeBtn.hasAttribute("selected")) {
+                themeStyle.setAttribute("href", "style-dark.css");
+                themeBtn.setAttribute("title", "ライトモードに切り替える");
+            } else {
+                themeStyle.setAttribute("href", "style-light.css");
+                themeBtn.setAttribute("title", "ダークモードに切り替える");
             }
         });
 
