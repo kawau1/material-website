@@ -1,28 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // ページトップFAB
-    document
-        .querySelector(".fab-pagetop")
-        ?.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-    // ページトップFABの表示制御
+    // ページトップFAB + Top App Bar スクロール制御
     const fabPageTop = document.querySelector(".fab-pagetop");
-    function toggleFabVisibility() {
-        if (!fabPageTop || !(fabPageTop instanceof HTMLElement)) return;
-        if (window.scrollY === 0) {
-            fabPageTop.style.display = "none";
-        } else {
-            fabPageTop.style.display = "";
+    const topAppBar = document.getElementById("topAppBar");
+    let wasScrolled = false;
+
+    fabPageTop?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    function handleScroll() {
+        const isScrolled = window.scrollY > 0;
+        if (isScrolled === wasScrolled) return;
+        wasScrolled = isScrolled;
+        if (fabPageTop instanceof HTMLElement) {
+            fabPageTop.style.display = isScrolled ? "" : "none";
         }
+        topAppBar?.classList.toggle("is-scrolled", isScrolled);
     }
-    toggleFabVisibility();
-    window.addEventListener("scroll", toggleFabVisibility);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
 
     // メニューアイコンボタン + サイドバー
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
     const sidebarScrim = document.getElementById("sidebarScrim");
+    const sidebarLinks = sidebar?.querySelectorAll(".sidebar-link");
     let lastFocusedElement = null;
 
     function setSidebarOpen(isOpen) {
@@ -66,11 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     sidebarScrim?.addEventListener("click", () => setSidebarOpen(false));
 
-    sidebar
-        ?.querySelectorAll("[data-sidebar-close]")
-        .forEach((item) =>
-            item.addEventListener("click", () => setSidebarOpen(false))
-        );
+    sidebarLinks?.forEach((item) =>
+        item.addEventListener("click", () => {
+            sidebarLinks.forEach((link) =>
+                link.classList.toggle("is-active", link === item)
+            );
+            setSidebarOpen(false);
+        })
+    );
 
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && sidebar?.classList.contains("is-open")) {
@@ -78,36 +83,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // テーマ切り替えボタン
+    // テーマ切り替え
     const themeBtn = document.getElementById("themeBtn");
     const themeStyle = document.getElementById("theme-style");
+
+    function setTheme(isDark) {
+        if (!themeStyle || !themeBtn) return;
+        themeStyle.setAttribute("href", isDark ? "style-dark.css" : "style-light.css");
+        themeBtn.setAttribute("title", isDark ? "ライトモードに切り替える" : "ダークモードに切り替える");
+        if (isDark) {
+            themeBtn.setAttribute("selected", "");
+        } else {
+            themeBtn.removeAttribute("selected");
+        }
+    }
+
     if (themeBtn && themeStyle) {
         themeBtn.addEventListener("click", () => {
             themeBtn.toggleAttribute("selected");
-            if (themeBtn.hasAttribute("selected")) {
-                themeStyle.setAttribute("href", "style-dark.css");
-                themeBtn.setAttribute("title", "ライトモードに切り替える");
-            } else {
-                themeStyle.setAttribute("href", "style-light.css");
-                themeBtn.setAttribute("title", "ダークモードに切り替える");
-            }
+            setTheme(themeBtn.hasAttribute("selected"));
         });
 
-        // デバイスのカラースキームに合わせて自動切り替え
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-        function applySystemTheme() {
-            if (!themeStyle || !themeBtn) return;
-            if (prefersDark.matches) {
-                themeStyle.setAttribute("href", "style-dark.css");
-                themeBtn.setAttribute("selected", "");
-                themeBtn.setAttribute("title", "ライトモードに切り替える");
-            } else {
-                themeStyle.setAttribute("href", "style-light.css");
-                themeBtn.removeAttribute("selected");
-                themeBtn.setAttribute("title", "ダークモードに切り替える");
-            }
-        }
-        applySystemTheme();
-        prefersDark.addEventListener("change", applySystemTheme);
+        setTheme(prefersDark.matches);
+        prefersDark.addEventListener("change", (e) => setTheme(e.matches));
     }
 });
