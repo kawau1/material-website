@@ -26,15 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const sidebarScrim = document.getElementById("sidebarScrim");
     const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
     const sidebarLinks = sidebar?.querySelectorAll(".sidebar-link");
-    let lastFocusedElement = null;
 
     function setSidebarOpen(isOpen) {
         if (!menuBtn || !sidebar || !sidebarScrim) return;
         if (isOpen) {
-            lastFocusedElement =
-                document.activeElement instanceof HTMLElement
-                    ? document.activeElement
-                    : null;
             const scrollbarWidth =
                 window.innerWidth - document.documentElement.clientWidth;
             document.body.style.setProperty(
@@ -47,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.classList.toggle("is-open", isOpen);
         sidebarScrim.classList.toggle("is-open", isOpen);
         document.body.classList.toggle("sidebar-open", isOpen);
-        sidebar.toggleAttribute("inert", !isOpen);
         sidebar.setAttribute("aria-hidden", isOpen ? "false" : "true");
         sidebarScrim.setAttribute("aria-hidden", isOpen ? "false" : "true");
         menuBtn.toggleAttribute("selected", isOpen);
@@ -56,11 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
             "title",
             isOpen ? "メニューを閉じる" : "メニューを開く"
         );
-        if (isOpen) {
-            sidebarCloseBtn?.focus();
-        } else if (lastFocusedElement) {
-            lastFocusedElement.focus();
-        }
     }
 
     if (menuBtn && sidebar && sidebarScrim) {
