@@ -47,8 +47,11 @@
         </header>
 
         <div id="sidebarScrim" class="sidebar-scrim" aria-hidden="true"></div>
-        <aside id="sidebar" class="sidebar" aria-hidden="true">
+        <aside id="sidebar" class="sidebar" aria-hidden="true" inert>
             <div class="sidebar-header">
+                <md-icon-button id="sidebarCloseBtn" title="メニューを閉じる" aria-label="メニューを閉じる">
+                    <md-icon>menu_open</md-icon>
+                </md-icon-button>
                 <span class="md-title-large">メニュー</span>
             </div>
             <md-divider></md-divider>
@@ -69,7 +72,7 @@
         </aside>
 
         <main class="container mx-auto px-6 py-8">
-            <md-fab class="fab-pagetop" variant="primary">
+            <md-fab class="fab-pagetop" variant="primary" aria-label="ページ上部へ戻る" hidden>
                 <md-icon slot="icon">arrow_upward</md-icon>
             </md-fab>
 
@@ -112,19 +115,19 @@
                         <h4 class="md-title-large text-on-surface mb-3">
                             主なスキル
                         </h4>
-                        <md-chip-set class="skill-chips">
-                            <md-assist-chip label="HTML5 / CSS3"></md-assist-chip>
-                            <md-assist-chip label="JavaScript (ES6+)"></md-assist-chip>
-                            <md-assist-chip label="React"></md-assist-chip>
-                            <md-assist-chip label="Vue.js"></md-assist-chip>
-                            <md-assist-chip label="Next.js"></md-assist-chip>
-                            <md-assist-chip label="Tailwind CSS"></md-assist-chip>
-                            <md-assist-chip label="Material UI"></md-assist-chip>
-                            <md-assist-chip label="Figma"></md-assist-chip>
-                            <md-assist-chip label="Adobe XD"></md-assist-chip>
-                            <md-assist-chip label="レスポンシブデザイン"></md-assist-chip>
-                            <md-assist-chip label="API連携"></md-assist-chip>
-                        </md-chip-set>
+                        <ul class="skill-chips" role="list">
+                            <li class="skill-chip">HTML5 / CSS3</li>
+                            <li class="skill-chip">JavaScript (ES6+)</li>
+                            <li class="skill-chip">React</li>
+                            <li class="skill-chip">Vue.js</li>
+                            <li class="skill-chip">Next.js</li>
+                            <li class="skill-chip">Tailwind CSS</li>
+                            <li class="skill-chip">Material UI</li>
+                            <li class="skill-chip">Figma</li>
+                            <li class="skill-chip">Adobe XD</li>
+                            <li class="skill-chip">レスポンシブデザイン</li>
+                            <li class="skill-chip">API連携</li>
+                        </ul>
                     </div>
                 </div>
             </section>

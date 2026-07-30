@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ページトップFAB + Top App Bar スクロール制御
     const fabPageTop = document.querySelector(".fab-pagetop");
     const topAppBar = document.getElementById("topAppBar");
-    let wasScrolled = false;
+    let wasScrolled = null;
 
     fabPageTop?.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isScrolled === wasScrolled) return;
         wasScrolled = isScrolled;
         if (fabPageTop instanceof HTMLElement) {
-            fabPageTop.style.display = isScrolled ? "" : "none";
+            fabPageTop.hidden = !isScrolled;
         }
         topAppBar?.classList.toggle("is-scrolled", isScrolled);
     }
@@ -24,12 +24,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
     const sidebarScrim = document.getElementById("sidebarScrim");
+    const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
     const sidebarLinks = sidebar?.querySelectorAll(".sidebar-link");
     let lastFocusedElement = null;
 
     function setSidebarOpen(isOpen) {
         if (!menuBtn || !sidebar || !sidebarScrim) return;
         if (isOpen) {
+            lastFocusedElement =
+                document.activeElement instanceof HTMLElement
+                    ? document.activeElement
+                    : null;
             const scrollbarWidth =
                 window.innerWidth - document.documentElement.clientWidth;
             document.body.style.setProperty(
@@ -42,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebar.classList.toggle("is-open", isOpen);
         sidebarScrim.classList.toggle("is-open", isOpen);
         document.body.classList.toggle("sidebar-open", isOpen);
+        sidebar.toggleAttribute("inert", !isOpen);
         sidebar.setAttribute("aria-hidden", isOpen ? "false" : "true");
         sidebarScrim.setAttribute("aria-hidden", isOpen ? "false" : "true");
         menuBtn.toggleAttribute("selected", isOpen);
@@ -51,10 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             isOpen ? "メニューを閉じる" : "メニューを開く"
         );
         if (isOpen) {
-            lastFocusedElement =
-                document.activeElement instanceof HTMLElement
-                    ? document.activeElement
-                    : null;
+            sidebarCloseBtn?.focus();
         } else if (lastFocusedElement) {
             lastFocusedElement.focus();
         }
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     sidebarScrim?.addEventListener("click", () => setSidebarOpen(false));
+    sidebarCloseBtn?.addEventListener("click", () => setSidebarOpen(false));
 
     sidebarLinks?.forEach((item) =>
         item.addEventListener("click", () => {
