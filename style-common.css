@@ -3,24 +3,50 @@
    ================================================== */
 
 :root {
-    /* --- Typeface --- */
-    --md-ref-typeface-brand: 'Roboto', sans-serif;
-    --md-ref-typeface-plain: 'Roboto', sans-serif;
+    color-scheme: light dark;
 
-    /* --- Typescale --- */
-    --md-sys-typescale-headline-large: 400 32px/40px var(--md-ref-typeface-brand);
-    --md-sys-typescale-headline-medium: 400 28px/36px var(--md-ref-typeface-brand);
-    --md-sys-typescale-title-large: 400 22px/28px var(--md-ref-typeface-brand);
-    --md-sys-typescale-body-large: 400 16px/24px var(--md-ref-typeface-plain);
-    --md-sys-typescale-body-medium: 400 14px/20px var(--md-ref-typeface-plain);
-    --md-sys-typescale-body-small: 400 12px/16px var(--md-ref-typeface-plain);
-    --md-sys-typescale-label-large: 500 14px/20px var(--md-ref-typeface-plain);
-    --md-sys-typescale-label-small: 500 11px/16px var(--md-ref-typeface-plain);
+    /* --- Typeface --- */
+    --md-ref-typeface-brand: "Roboto", sans-serif;
+    --md-ref-typeface-plain: "Roboto", sans-serif;
+
+    /* Material Web と同じシステムトークン・既定値から font を組み立てる。 */
+    --app-font-headline-large:
+        var(--md-sys-typescale-headline-large-weight, 400)
+        var(--md-sys-typescale-headline-large-size, 2rem) / var(--md-sys-typescale-headline-large-line-height, 2.5rem)
+        var(--md-sys-typescale-headline-large-font, var(--md-ref-typeface-brand));
+    --app-font-headline-medium:
+        var(--md-sys-typescale-headline-medium-weight, 400)
+        var(--md-sys-typescale-headline-medium-size, 1.75rem) / var(--md-sys-typescale-headline-medium-line-height, 2.25rem)
+        var(--md-sys-typescale-headline-medium-font, var(--md-ref-typeface-brand));
+    --app-font-title-large:
+        var(--md-sys-typescale-title-large-weight, 400)
+        var(--md-sys-typescale-title-large-size, 1.375rem) / var(--md-sys-typescale-title-large-line-height, 1.75rem)
+        var(--md-sys-typescale-title-large-font, var(--md-ref-typeface-brand));
+    --app-font-body-large:
+        var(--md-sys-typescale-body-large-weight, 400)
+        var(--md-sys-typescale-body-large-size, 1rem) / var(--md-sys-typescale-body-large-line-height, 1.5rem)
+        var(--md-sys-typescale-body-large-font, var(--md-ref-typeface-plain));
+    --app-font-body-medium:
+        var(--md-sys-typescale-body-medium-weight, 400)
+        var(--md-sys-typescale-body-medium-size, 0.875rem) / var(--md-sys-typescale-body-medium-line-height, 1.25rem)
+        var(--md-sys-typescale-body-medium-font, var(--md-ref-typeface-plain));
+    --app-font-body-small:
+        var(--md-sys-typescale-body-small-weight, 400)
+        var(--md-sys-typescale-body-small-size, 0.75rem) / var(--md-sys-typescale-body-small-line-height, 1rem)
+        var(--md-sys-typescale-body-small-font, var(--md-ref-typeface-plain));
+    --app-font-label-large:
+        var(--md-sys-typescale-label-large-weight, 500)
+        var(--md-sys-typescale-label-large-size, 0.875rem) / var(--md-sys-typescale-label-large-line-height, 1.25rem)
+        var(--md-sys-typescale-label-large-font, var(--md-ref-typeface-plain));
+    --app-font-label-small:
+        var(--md-sys-typescale-label-small-weight, 500)
+        var(--md-sys-typescale-label-small-size, 0.6875rem) / var(--md-sys-typescale-label-small-line-height, 1rem)
+        var(--md-sys-typescale-label-small-font, var(--md-ref-typeface-plain));
 
     /* --- Elevation (M3 shadow values) --- */
-    --md-sys-elevation-1: 0 1px 2px 0 rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15);
-    --md-sys-elevation-2: 0 1px 2px 0 rgba(0,0,0,0.3), 0 2px 6px 2px rgba(0,0,0,0.15);
-    --md-sys-elevation-3: 0 1px 3px 0 rgba(0,0,0,0.3), 0 4px 8px 3px rgba(0,0,0,0.15);
+    --md-sys-elevation-1: 0 1px 2px 0 rgb(0 0 0 / 30%), 0 1px 3px 1px rgb(0 0 0 / 15%);
+    --md-sys-elevation-2: 0 1px 2px 0 rgb(0 0 0 / 30%), 0 2px 6px 2px rgb(0 0 0 / 15%);
+    --md-sys-elevation-3: 0 1px 3px 0 rgb(0 0 0 / 30%), 0 4px 8px 3px rgb(0 0 0 / 15%);
 
     /* --- Shape --- */
     --md-sys-shape-corner-medium: 12px;
@@ -28,87 +54,74 @@
     --md-sys-shape-corner-full: 9999px;
 
     /* --- Motion (M3 easing) --- */
-    --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
     --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
     --md-sys-motion-duration-short: 200ms;
     --md-sys-motion-duration-medium: 300ms;
 
     /* --- Layout --- */
-    --md-top-app-bar-height: 64px;
+    --md-top-app-bar-height: 4rem;
+    --page-gutter: clamp(16px, 4vw, 24px);
 }
 
-/* ==================================================
-   Base
-   ================================================== */
+:root:has(meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+}
+
+:root:has(meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
-    font: var(--md-sys-typescale-body-large);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font: var(--app-font-body-large);
     background: var(--md-sys-color-background);
     color: var(--md-sys-color-on-background);
-    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
 }
 
 section[id] {
-    scroll-margin-top: calc(var(--md-top-app-bar-height) + 8px);
+    scroll-margin-block-start: calc(var(--md-top-app-bar-height) + 0.5rem);
 }
 
-/* ==================================================
-   M3 Typescale utility classes
-   ================================================== */
-
-.md-headline-large  { font: var(--md-sys-typescale-headline-large); }
-.md-headline-medium { font: var(--md-sys-typescale-headline-medium); }
-.md-title-large     { font: var(--md-sys-typescale-title-large); }
-.md-body-large      { font: var(--md-sys-typescale-body-large); }
-.md-body-medium     { font: var(--md-sys-typescale-body-medium); }
-.md-body-small      { font: var(--md-sys-typescale-body-small); }
-.md-label-large     { font: var(--md-sys-typescale-label-large); }
-.md-label-small     { font: var(--md-sys-typescale-label-small); }
-
-/* ==================================================
-   M3 Color utility classes
-   ================================================== */
-
-.text-primary            { color: var(--md-sys-color-primary); }
-.text-on-surface         { color: var(--md-sys-color-on-surface); }
-.text-on-surface-variant { color: var(--md-sys-color-on-surface-variant); }
-.border-outline-variant  { border-color: var(--md-sys-color-outline-variant); }
-
-.text-link {
-    color: var(--md-sys-color-primary);
-    text-decoration: none;
-    transition: color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
 }
 
-.text-link:hover {
-    color: var(--md-sys-color-tertiary);
+.page-width {
+    max-inline-size: 96rem;
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
 }
 
-/* ==================================================
-   M3 Elevation utility classes
-   ================================================== */
-
-.md-elevation-1 { box-shadow: var(--md-sys-elevation-1); }
-.md-elevation-2 { box-shadow: var(--md-sys-elevation-2); }
-
-/* ==================================================
-   M3 Top App Bar
-   ================================================== */
+.page-content {
+    display: grid;
+    gap: 3rem;
+    padding-block: 2rem 3rem;
+}
 
 .md-top-app-bar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
-    height: var(--md-top-app-bar-height);
-    padding: 0 4px;
+    min-block-size: var(--md-top-app-bar-height);
+    padding-inline: 0.25rem;
     background: var(--md-sys-color-surface);
     color: var(--md-sys-color-on-surface);
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    transition: background var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
-                box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+    transition: background-color var(--md-sys-motion-duration-short),
+        box-shadow var(--md-sys-motion-duration-short);
 }
 
 .md-top-app-bar.is-scrolled {
@@ -117,187 +130,335 @@ section[id] {
 }
 
 .md-top-app-bar__title {
-    font: var(--md-sys-typescale-title-large);
-    color: var(--md-sys-color-on-surface);
     flex: 1;
-    padding: 0 16px;
-    margin: 0;
+    min-inline-size: 0;
+    padding-inline: clamp(0.5rem, 2vw, 1rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font: var(--app-font-title-large);
 }
 
-/* ==================================================
-   M3 Surface (shared base for Card / Section)
-   ================================================== */
+.icon-button {
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: 48px;
+    block-size: 48px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    .icon-button:hover {
+        background: var(--md-sys-color-surface-container-highest);
+    }
+}
 
 .md-card,
 .md-section {
-    background: var(--md-sys-color-surface-container);
     border-radius: var(--md-sys-shape-corner-medium);
+    background: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
     box-shadow: var(--md-sys-elevation-1);
+    overflow-wrap: anywhere;
 }
 
-/* ==================================================
-   M3 Card (with state layer)
-   ================================================== */
-
-.md-card {
-    overflow: hidden;
-    position: relative;
-    transition: box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+.md-section {
+    padding: clamp(24px, 5vw, 48px);
 }
-
-.md-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--md-sys-color-on-surface);
-    opacity: 0;
-    transition: opacity var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.md-card:hover {
-    box-shadow: var(--md-sys-elevation-2);
-}
-
-.md-card:hover::before {
-    opacity: 0.08;
-}
-
-/* ==================================================
-   M3 Section
-   ================================================== */
 
 .md-section__heading {
-    font: var(--md-sys-typescale-headline-medium);
+    padding-block-end: 0.5rem;
     color: var(--md-sys-color-primary);
-    padding-bottom: 8px;
-    margin-bottom: 0;
+    font: var(--app-font-headline-medium);
+    overflow-wrap: anywhere;
 }
 
-/* ==================================================
-   Skill Chips
-   ================================================== */
+.intro {
+    text-align: center;
+}
+
+.intro__portrait {
+    display: block;
+    inline-size: clamp(128px, 20vw, 160px);
+    max-inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1;
+    margin-inline: auto;
+    margin-block-end: 1.5rem;
+    border: 4px solid var(--md-sys-color-outline-variant);
+    border-radius: 50%;
+}
+
+.intro__name {
+    margin-block-end: 0.5rem;
+    color: var(--md-sys-color-primary);
+    font: var(--app-font-headline-large);
+}
+
+.intro__role,
+.intro__description {
+    margin-block-end: 1.5rem;
+}
+
+.intro__role {
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--app-font-title-large);
+}
+
+.intro__description {
+    max-inline-size: 42rem;
+    margin-inline: auto;
+}
+
+.intro md-filled-tonal-button {
+    max-inline-size: 100%;
+    white-space: normal;
+}
+
+.about-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    margin-block-start: 1.5rem;
+}
+
+.about-grid__paragraph {
+    margin-block-end: 1rem;
+}
+
+.about-grid__skills-title {
+    margin-block-end: 0.75rem;
+    font: var(--app-font-title-large);
+}
 
 .skill-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 0.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
 .skill-chip {
-    box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    min-height: 32px;
-    padding: 0 16px;
+    max-inline-size: 100%;
+    min-block-size: 2rem;
+    padding-inline: 1rem;
     border: 1px solid var(--md-sys-color-outline);
     border-radius: 8px;
-    color: var(--md-sys-color-on-surface);
-    font: var(--md-sys-typescale-label-large);
+    font: var(--app-font-label-large);
 }
 
-/* ==================================================
-   Footer
-   ================================================== */
+.project-grid {
+    --project-gap: 2rem;
 
-.bg-footer {
+    /* カードが増えても1行に収めるのは3列まで。 */
+    --three-column-width: calc((100% - 2 * var(--project-gap)) / 3);
+
+    display: grid;
+    gap: var(--project-gap);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, max(18rem, var(--three-column-width))), 1fr));
+    margin-block-start: 2rem;
+}
+
+.md-card {
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--md-sys-motion-duration-short);
+}
+
+.md-card:is(:hover, :focus-within) {
+    box-shadow: var(--md-sys-elevation-2);
+}
+
+.md-card__image {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 2 / 1;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+    object-fit: cover;
+}
+
+.md-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+    padding: min(1.5rem, 6vw);
+}
+
+.md-card__title {
+    color: var(--md-sys-color-primary);
+    font: var(--app-font-title-large);
+}
+
+.md-card__description {
+    margin-block-end: 0.5rem;
+    color: var(--md-sys-color-on-surface-variant);
+    font: var(--app-font-body-medium);
+}
+
+.text-link {
+    margin-block-start: auto;
+    color: var(--md-sys-color-primary);
+    font: var(--app-font-label-large);
+    text-underline-offset: 0.2em;
+}
+
+.text-link:hover {
+    color: var(--md-sys-color-tertiary);
+}
+
+.page-footer {
+    padding-block: 2rem;
     background: var(--md-sys-color-surface-variant);
     color: var(--md-sys-color-on-surface-variant);
+    text-align: center;
 }
 
-/* ==================================================
-   FAB (page top)
-   ================================================== */
+.page-footer__copyright {
+    font: var(--app-font-body-small);
+}
+
+.page-footer__description {
+    margin-block-start: 0.25rem;
+    font: var(--app-font-label-small);
+}
+
+.page-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-block-start: 1rem;
+}
+
+/* 固定 FAB とフッターの操作領域が重ならないよう、狭い画面で余白を確保する。 */
+@media (width <= 40rem) {
+    .page-footer {
+        padding-block-end: 6rem;
+    }
+}
 
 .fab-pagetop {
     position: fixed;
-    right: 16px;
-    bottom: 16px;
-    z-index: 50;
+    inset-inline-end: max(1rem, env(safe-area-inset-right));
+    inset-block-end: max(1rem, env(safe-area-inset-bottom));
+    z-index: 2;
 }
 
-/* ==================================================
-   Sidebar / Navigation Drawer (M3)
-   ================================================== */
+.fab-pagetop[hidden] {
+    display: none;
+}
 
 .sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: min(80vw, 360px);
-    height: 100vh;
+    inset: 0 auto 0 0;
+    inline-size: min(80vw, 22.5rem);
+    block-size: 100%;
+    max-inline-size: none;
+    max-block-size: none;
+    margin: 0;
     padding: 0 12px;
+    border: 0;
+    border-start-end-radius: var(--md-sys-shape-corner-large);
+    border-end-end-radius: var(--md-sys-shape-corner-large);
     background: var(--md-sys-color-surface-container-low);
     color: var(--md-sys-color-on-surface);
     box-shadow: var(--md-sys-elevation-3);
-    border-radius: 0 var(--md-sys-shape-corner-large) var(--md-sys-shape-corner-large) 0;
-    transform: translateX(-100%);
-    transition: transform var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-emphasized);
-    z-index: 60;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
 }
 
-.sidebar.is-open {
-    transform: translateX(0);
+.sidebar::backdrop {
+    background: rgb(0 0 0 / 35%);
+    overflow: hidden;
+    overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (transition-behavior: allow-discrete) {
+        .sidebar {
+            translate: -100% 0;
+            transition:
+                translate var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard),
+                display var(--md-sys-motion-duration-medium),
+                overlay var(--md-sys-motion-duration-medium);
+            transition-behavior: allow-discrete;
+        }
+
+        .sidebar[open] {
+            translate: 0 0;
+        }
+
+        .sidebar::backdrop {
+            opacity: 0;
+            transition:
+                opacity var(--md-sys-motion-duration-medium),
+                display var(--md-sys-motion-duration-medium),
+                overlay var(--md-sys-motion-duration-medium);
+            transition-behavior: allow-discrete;
+        }
+
+        .sidebar[open]::backdrop {
+            opacity: 1;
+        }
+
+        @starting-style {
+            .sidebar[open] {
+                translate: -100% 0;
+            }
+
+            .sidebar[open]::backdrop {
+                opacity: 0;
+            }
+        }
+    }
 }
 
 .sidebar-header {
     display: flex;
     align-items: center;
-    height: 56px;
     gap: 8px;
-    padding: 0 4px;
+    min-block-size: 3.5rem;
     color: var(--md-sys-color-on-surface-variant);
+    overflow-wrap: anywhere;
 }
 
-.sidebar-scrim {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
-    z-index: 55;
-}
-
-.sidebar-scrim.is-open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.sidebar-open {
-    overflow: hidden;
-    padding-right: var(--scrollbar-width, 0px);
+.md-title-large {
+    font: var(--app-font-title-large);
 }
 
 .sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    padding: 12px 0;
+    display: grid;
+    padding-block: 0.75rem;
 }
 
 .sidebar-link {
     display: flex;
     align-items: center;
     gap: 12px;
-    height: 56px;
-    padding: 0 24px 0 16px;
+    min-block-size: 3.5rem;
+    padding: 0.5rem 16px;
     border-radius: var(--md-sys-shape-corner-full);
-    text-decoration: none;
-    font: var(--md-sys-typescale-label-large);
     color: var(--md-sys-color-on-surface-variant);
-    transition: background var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
-                color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+    font: var(--app-font-label-large);
+    text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .sidebar-link__icon {
-    color: var(--md-sys-color-on-surface-variant);
+    flex: none;
     font-size: 24px;
 }
 
@@ -306,16 +467,14 @@ section[id] {
     color: var(--md-sys-color-on-surface);
 }
 
-.sidebar-link.is-active {
+.sidebar-link[aria-current="location"] {
     background: var(--md-sys-color-secondary-container);
     color: var(--md-sys-color-on-secondary-container);
 }
 
-.sidebar-link.is-active .sidebar-link__icon {
-    color: var(--md-sys-color-on-secondary-container);
-}
-
-.sidebar-link:focus-visible {
-    outline: 2px solid var(--md-sys-color-primary);
-    outline-offset: 2px;
+@media (prefers-reduced-motion: reduce) {
+    .md-top-app-bar,
+    .md-card {
+        transition: none;
+    }
 }

@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>マイポートフォリオ - マテリアルデザイン</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="style-common.css" />
-        <link id="theme-style" rel="stylesheet" href="style-light.css" />
-        <script src="script.js"></script>
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="style-common.css">
+        <link rel="stylesheet" href="style-light.css">
+        <link id="dark-theme" rel="stylesheet" href="style-dark.css" media="(prefers-color-scheme: dark)">
+        <script>
+            // 保存済みのテーマを初回描画前に反映する。
+            (() => {
+                let theme;
+                try {
+                    theme = localStorage.getItem("portfolio-theme");
+                } catch {
+                    return; // ストレージが使えない場合はシステム設定に従う。
+                }
+                if (theme === "light" || theme === "dark") {
+                    document.querySelector('meta[name="color-scheme"]').content = theme;
+                    document.getElementById("dark-theme").media = theme === "dark" ? "all" : "not all";
+                }
+            })();
+        </script>
+        <script src="script.js" defer></script>
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
             rel="stylesheet"
-        />
+       >
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
             rel="stylesheet"
-        />
+       >
         <script type="importmap">
             {
                 "imports": {
@@ -32,89 +48,92 @@
 
     <body>
         <header class="md-top-app-bar" id="topAppBar">
-            <md-icon-button class="mx-1" id="menuBtn" title="メニューを開く" aria-controls="sidebar" aria-expanded="false" aria-label="メニュー">
-                <md-icon>menu</md-icon>
-                <md-icon slot="selected">menu_open</md-icon>
-            </md-icon-button>
+            <button type="button" class="icon-button" id="menuBtn" title="メニューを開く"
+                    aria-label="メニューを開く" aria-haspopup="dialog" aria-controls="sidebar" aria-expanded="false">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            </button>
             <h1 class="md-top-app-bar__title">マイポートフォリオ</h1>
-            <md-icon-button class="mx-1" title="検索">
-                <md-icon>search</md-icon>
+            <md-icon-button title="検索" aria-label="検索">
+                <md-icon aria-hidden="true">search</md-icon>
             </md-icon-button>
-            <md-icon-button class="mx-1" id="themeBtn" title="ダークモードに切り替える">
-                <md-icon>dark_mode</md-icon>
-                <md-icon slot="selected">light_mode</md-icon>
+            <md-icon-button id="themeBtn" title="ダークモードに切り替える" aria-label="ダークモードに切り替える">
+                <md-icon aria-hidden="true">dark_mode</md-icon>
+                <md-icon slot="selected" aria-hidden="true">light_mode</md-icon>
             </md-icon-button>
         </header>
 
-        <div id="sidebarScrim" class="sidebar-scrim" aria-hidden="true"></div>
-        <aside id="sidebar" class="sidebar" aria-hidden="true">
+        <dialog id="sidebar" class="sidebar" closedby="any" aria-labelledby="sidebarTitle">
             <div class="sidebar-header">
-                <md-icon-button id="sidebarCloseBtn" title="メニューを閉じる" aria-label="メニューを閉じる">
-                    <md-icon>menu_open</md-icon>
-                </md-icon-button>
-                <span class="md-title-large">メニュー</span>
+                <button type="button" class="icon-button" id="sidebarCloseBtn" title="メニューを閉じる"
+                        aria-label="メニューを閉じる" autofocus>
+                    <span class="material-symbols-outlined" aria-hidden="true">menu_open</span>
+                </button>
+                <span class="md-title-large" id="sidebarTitle">メニュー</span>
             </div>
             <md-divider></md-divider>
             <nav class="sidebar-nav" aria-label="サイドナビゲーション">
-                <a href="#hero" class="sidebar-link" data-sidebar-close>
-                    <md-icon class="sidebar-link__icon">home</md-icon>
-                    トップ
+                <a href="#hero" class="sidebar-link" aria-labelledby="nav-hero-label">
+                    <md-icon class="sidebar-link__icon" aria-hidden="true">home</md-icon>
+                    <span id="nav-hero-label">トップ</span>
                 </a>
-                <a href="#about" class="sidebar-link" data-sidebar-close>
-                    <md-icon class="sidebar-link__icon">person</md-icon>
-                    私について
+                <a href="#about" class="sidebar-link" aria-labelledby="nav-about-label">
+                    <md-icon class="sidebar-link__icon" aria-hidden="true">person</md-icon>
+                    <span id="nav-about-label">私について</span>
                 </a>
-                <a href="#projects" class="sidebar-link" data-sidebar-close>
-                    <md-icon class="sidebar-link__icon">work</md-icon>
-                    プロジェクト
+                <a href="#projects" class="sidebar-link" aria-labelledby="nav-projects-label">
+                    <md-icon class="sidebar-link__icon" aria-hidden="true">work</md-icon>
+                    <span id="nav-projects-label">プロジェクト</span>
                 </a>
             </nav>
-        </aside>
+        </dialog>
 
-        <main class="container mx-auto px-6 py-8">
+        <main class="page-width page-content">
             <md-fab class="fab-pagetop" variant="primary" aria-label="ページ上部へ戻る" hidden>
-                <md-icon slot="icon">arrow_upward</md-icon>
+                <md-icon slot="icon" aria-hidden="true">arrow_upward</md-icon>
             </md-fab>
 
-            <section id="hero" class="md-section p-8 md:p-12 mb-12 text-center">
+            <section id="hero" class="md-section intro" tabindex="-1">
                 <img
-                    src="https://placehold.co/150x150/E0E0E0/333333?text=あなたの顔写真"
-                    alt="あなたの顔写真"
-                    class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-outline-variant"
-                />
-                <h2 class="md-headline-large text-primary mb-2">
+                    src="https://placehold.co/150x150/E0E0E0/333333?text=EC"
+                    alt=""
+                    class="intro__portrait"
+                    width="150"
+                    height="150"
+                    fetchpriority="high"
+               >
+                <h2 class="intro__name">
                     Example Contributor
                 </h2>
-                <p class="md-title-large text-on-surface-variant mb-6">
+                <p class="intro__role">
                     システムエンジニア | UI/UXデザイナー
                 </p>
-                <p class="md-body-large text-on-surface max-w-2xl mx-auto mb-6">
+                <p class="intro__description">
                     はじめまして！私はユーザー中心の美しいウェブサイトやアプリケーションを作成することに情熱を注いでいるシステムエンジニアです。
                     マテリアルデザインの原則に基づいた、直感的で使いやすいインターフェースデザインを得意としています。
                 </p>
                 <md-filled-tonal-button>
-                    <md-icon slot="icon">mail</md-icon>
+                    <md-icon slot="icon" aria-hidden="true">mail</md-icon>
                     お問い合わせ
                 </md-filled-tonal-button>
             </section>
 
-            <section id="about" class="md-section p-8 md:p-12 mb-12">
-                <h3 class="md-section__heading">私について</h3>
+            <section id="about" class="md-section" tabindex="-1">
+                <h2 class="md-section__heading">私について</h2>
                 <md-divider></md-divider>
-                <div class="grid md:grid-cols-2 gap-8 mt-6">
+                <div class="about-grid">
                     <div>
-                        <p class="md-body-large text-on-surface mb-4">
+                        <p class="about-grid__paragraph">
                             私は数年にわたり、フロントエンド開発とUIデザインに携わってきました。特にReactやVue.jsといったモダンなJavaScriptフレームワークを使用した開発経験が豊富です。
                             常に新しい技術やデザイントレンドを学び、最高のユーザーエクスペリエンスを提供することを目指しています。
                         </p>
-                        <p class="md-body-large text-on-surface">
+                        <p>
                             趣味は、新しいカフェの開拓、写真撮影、そして週末にはハイキングに出かけることです。これらの経験が、私のクリエイティブな発想の源泉となっています。
                         </p>
                     </div>
                     <div>
-                        <h4 class="md-title-large text-on-surface mb-3">
+                        <h3 class="about-grid__skills-title">
                             主なスキル
-                        </h4>
+                        </h3>
                         <ul class="skill-chips" role="list">
                             <li class="skill-chip">HTML5 / CSS3</li>
                             <li class="skill-chip">JavaScript (ES6+)</li>
@@ -132,67 +151,133 @@
                 </div>
             </section>
 
-            <section id="projects" class="mb-12">
-                <h3 class="md-section__heading">プロジェクト事例</h3>
-                <md-divider class="mb-8"></md-divider>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="md-card">
+            <section id="projects" tabindex="-1">
+                <h2 class="md-section__heading">プロジェクト事例</h2>
+                <md-divider></md-divider>
+                <div class="project-grid">
+                    <article class="md-card">
                         <img
                             src="https://placehold.co/600x400/68548E/FFFFFF?text=Project1"
                             alt="プロジェクト1の画像"
-                            class="w-full h-48 object-cover"
-                        />
-                        <div class="p-6">
-                            <h4 class="md-title-large text-primary mb-2">
+                            class="md-card__image"
+                            width="600"
+                            height="400"
+                            loading="lazy"
+                       >
+                        <div class="md-card__content">
+                            <h3 class="md-card__title">
                                 プロジェクト名 1
-                            </h4>
-                            <p class="md-body-medium text-on-surface-variant mb-4">
+                            </h3>
+                            <p class="md-card__description">
                                 このプロジェクトは、〇〇の課題を解決するために開発されました。主な使用技術はReactとFirebaseです。
                             </p>
-                            <a href="#" class="text-link md-label-large">詳細を見る &rarr;</a>
+                            <a href="#" class="text-link">詳細を見る &rarr;</a>
                         </div>
-                    </div>
-                    <div class="md-card">
+                    </article>
+                    <article class="md-card">
                         <img
                             src="https://placehold.co/600x400/635B70/FFFFFF?text=Project2"
                             alt="プロジェクト2の画像"
-                            class="w-full h-48 object-cover"
-                        />
-                        <div class="p-6">
-                            <h4 class="md-title-large text-primary mb-2">
+                            class="md-card__image"
+                            width="600"
+                            height="400"
+                            loading="lazy"
+                       >
+                        <div class="md-card__content">
+                            <h3 class="md-card__title">
                                 プロジェクト名 2
-                            </h4>
-                            <p class="md-body-medium text-on-surface-variant mb-4">
+                            </h3>
+                            <p class="md-card__description">
                                 ECサイトのUI/UX改善プロジェクト。マテリアルデザインを採用し、コンバージョン率の向上に貢献しました。
                             </p>
-                            <a href="#" class="text-link md-label-large">詳細を見る &rarr;</a>
+                            <a href="#" class="text-link">詳細を見る &rarr;</a>
                         </div>
-                    </div>
-                    <div class="md-card">
+                    </article>
+                    <article class="md-card">
                         <img
                             src="https://placehold.co/600x400/7E525D/FFFFFF?text=Project3"
                             alt="プロジェクト3の画像"
-                            class="w-full h-48 object-cover"
-                        />
-                        <div class="p-6">
-                            <h4 class="md-title-large text-primary mb-2">
+                            class="md-card__image"
+                            width="600"
+                            height="400"
+                            loading="lazy"
+                       >
+                        <div class="md-card__content">
+                            <h3 class="md-card__title">
                                 プロジェクト名 3
-                            </h4>
-                            <p class="md-body-medium text-on-surface-variant mb-4">
+                            </h3>
+                            <p class="md-card__description">
                                 モバイルアプリのプロトタイプデザイン。ユーザーインタビューに基づき、使いやすさを追求しました。
                             </p>
-                            <a href="#" class="text-link md-label-large">詳細を見る &rarr;</a>
+                            <a href="#" class="text-link">詳細を見る &rarr;</a>
                         </div>
-                    </div>
+                    </article>
+                    <article class="md-card">
+                        <img
+                            src="https://placehold.co/600x400/3C6356/FFFFFF?text=Project4"
+                            alt="プロジェクト4の画像"
+                            class="md-card__image"
+                            width="600"
+                            height="400"
+                            loading="lazy"
+                        >
+                        <div class="md-card__content">
+                            <h3 class="md-card__title">
+                                プロジェクト名 4
+                            </h3>
+                            <p class="md-card__description">
+                                チームの進捗を確認するダッシュボード。担当者や期限でタスクを絞り込み、対応が必要な項目を探せます。
+                            </p>
+                            <a href="#" class="text-link">詳細を見る &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="md-card">
+                        <img
+                            src="https://placehold.co/600x400/405D78/FFFFFF?text=Project5"
+                            alt="プロジェクト5の画像"
+                            class="md-card__image"
+                            width="600"
+                            height="400"
+                            loading="lazy"
+                        >
+                        <div class="md-card__content">
+                            <h3 class="md-card__title">
+                                プロジェクト名 5
+                            </h3>
+                            <p class="md-card__description">
+                                イベントの予約フォーム。空き枠の選択から申込内容の確認まで、スマートフォンで操作しやすく設計しました。
+                            </p>
+                            <a href="#" class="text-link">詳細を見る &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="md-card">
+                        <img
+                            src="https://placehold.co/600x400/785834/FFFFFF?text=Project6"
+                            alt="プロジェクト6の画像"
+                            class="md-card__image"
+                            width="600"
+                            height="400"
+                            loading="lazy"
+                        >
+                        <div class="md-card__content">
+                            <h3 class="md-card__title">
+                                プロジェクト名 6
+                            </h3>
+                            <p class="md-card__description">
+                                施設案内サイトのアクセシビリティ改善。見出しの構成、色のコントラスト、キーボードでの操作を見直しました。
+                            </p>
+                            <a href="#" class="text-link">詳細を見る &rarr;</a>
+                        </div>
+                    </article>
                 </div>
             </section>
         </main>
 
-        <footer class="bg-footer mt-12 py-8 text-center">
-            <div class="container mx-auto px-6">
-                <p class="md-body-small">&copy; 2025 kawau1. All Rights Reserved.</p>
-                <p class="md-label-small mt-1">マテリアルデザイン風ポートフォリオ</p>
-                <div class="mt-4">
+        <footer class="page-footer">
+            <div class="page-width">
+                <p class="page-footer__copyright">&copy; 2025 kawau1. All Rights Reserved.</p>
+                <p class="page-footer__description">マテリアルデザイン風ポートフォリオ</p>
+                <div class="page-footer__links">
                     <md-text-button href="#">GitHub</md-text-button>
                     <md-text-button href="#">LinkedIn</md-text-button>
                     <md-text-button href="#">Twitter</md-text-button>
